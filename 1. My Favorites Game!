@@ -1,0 +1,16 @@
+# Step 1: Welcome the User
+print("Welcome to the Interactive Python Program!")
+
+# Step 2: Ask for the User's Name
+name = input("What is your name? ")
+
+# Step 3: Ask for the User's Favorite Color
+favorite_color = input("What is your favorite color? ")
+
+# Step 4: Ask for the User's Favorite Animal
+favorite_animal = input("What is your favorite animal? ")
+
+# Step 5: Generate a Personalized Message
+print("Hello " + name + "! It's cool that your favorite color is " + favorite_color + " and you like " + favorite_animal + "s!")
+
+

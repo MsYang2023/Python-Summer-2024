@@ -1,0 +1,58 @@
+# Step 1: Welcome the User
+print("Welcome to the List Manipulation Adventure!")
+
+# Step 2: Initialize a List
+my_list = []
+
+# Step 3: Provide Options for List Manipulation
+while True:
+    print("\nChoose an option:")
+    print("1. Add an item to the list")
+    print("2. Remove an item from the list")
+    print("3. Insert an item at a specific position")
+    print("4. Pop an item from the list")
+    print("5. Find the index of an item in the list")
+    print("6. Display the list")
+    print("7. Exit")
+    
+    choice = int(input("Enter your choice: "))
+    
+    if choice == 1:
+        item = input("Enter the item to add: ")
+        my_list.append(item)
+        print(f"The item '{item}' has been added to the list.")
+    elif choice == 2:
+        item = input("Enter the item to remove: ")
+        if item in my_list:
+            my_list.remove(item)
+            print(f"The item '{item}' has been removed from the list.")
+        else:
+            print(f"The item '{item}' is not in the list.")
+    elif choice == 3:
+        item = input("Enter the item to insert: ")
+        position = int(input("Enter the position (0-based index): "))
+        if 0 <= position <= len(my_list):
+            my_list.insert(position, item)
+            print(f"The item '{item}' has been inserted at position {position}.")
+        else:
+            print("Invalid position.")
+    elif choice == 4:
+        if my_list:
+            item = my_list.pop()
+            print(f"The item '{item}' has been popped from the list.")
+        else:
+            print("The list is empty.")
+    elif choice == 5:
+        item = input("Enter the item to find: ")
+        if item in my_list:
+            index = my_list.index(item)
+            print(f"The item '{item}' is at position {index}.")
+        else:
+            print(f"The item '{item}' is not in the list.")
+    elif choice == 6:
+        print("Current list:", my_list)
+    elif choice == 7:
+        print("Thank you for playing the List Manipulation Adventure!")
+        break
+    else:
+        print("Invalid choice. Please try again.")

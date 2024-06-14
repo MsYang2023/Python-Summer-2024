@@ -1,0 +1,41 @@
+# Define animal tuples
+animal1 = ("Leo", "Lion", 5, "meat")
+animal2 = ("Ella", "Elephant", 10, "fruits")
+animal3 = ("Milo", "Monkey", 3, "bananas")
+
+# Function to display animal information
+def display_animal(animal):
+    name, species, age, favorite_food = animal
+    print(f"Name: {name}, Species: {species}, Age: {age}, Favorite Food: {favorite_food}")
+    print()
+
+# Function to simulate finding food
+def find_food(animal):
+    name, species, age, favorite_food = animal
+    print(f"{name} the {species} is looking for {favorite_food}...")
+    print(f"{name} found some {favorite_food}!")
+    print()
+
+# Function to simulate interaction between two animals
+def interact(animal1, animal2):
+    name1, species1, age1, favorite_food1 = animal1
+    name2, species2, age2, favorite_food2 = animal2
+    print(f"{name1} the {species1} meets {name2} the {species2}.")
+    print(f"They share a meal of {favorite_food1} and {favorite_food2}.")
+    print()
+
+# Main program
+# Display animal information
+display_animal(animal1)
+display_animal(animal2)
+display_animal(animal3)
+
+# Simulate finding food
+find_food(animal1)
+find_food(animal2)
+find_food(animal3)
+
+# Simulate interactions
+interact(animal1, animal2)
+interact(animal2, animal3)
+interact(animal1, animal3)

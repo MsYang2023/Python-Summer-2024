@@ -1,0 +1,30 @@
+import random
+
+# Lists of options for character attributes
+names = ["Aragon", "Bilbo", "Cersei", "Daenerys", "Eowyn"]
+races = ["Elf", "Dwarf", "Human", "Orc", "Dragonborn"]
+classes = ["Warrior", "Mage", "Rogue", "Paladin", "Ranger"]
+weapons = ["Sword", "Bow", "Staff", "Dagger", "Axe"]
+
+# Function to generate a random character
+def generate_character():
+    character = {
+        "name": random.choice(names),
+        "race": random.choice(races),
+        "class": random.choice(classes),
+        "weapon": random.choice(weapons)
+    }
+    return character
+
+# Function to display the character
+def display_character(character):
+    print(f"Name: {character['name']}")
+    print(f"Race: {character['race']}")
+    print(f"Class: {character['class']}")
+    print(f"Weapon: {character['weapon']}")
+    print()
+
+# Generate and display multiple characters
+for _ in range(3):
+    char = generate_character()
+    display_character(char)

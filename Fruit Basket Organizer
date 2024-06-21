@@ -1,0 +1,41 @@
+# Step 1: Create an empty list for the fruit basket
+fruit_basket = []
+
+# Maximum capacity of the basket
+max_capacity = 3
+
+print("Welcome to the Fruit Basket Organizer!")
+print(f"The basket can hold up to {max_capacity} fruits.")
+
+# Step 2: Allow the user to add fruits to the basket
+for i in range(max_capacity):
+    fruit = input("Enter a fruit to add to the basket (or type 'stop' to finish): ")
+    
+    # Step 3: Check for the 'stop' condition
+    if fruit == 'stop':
+        print("You chose to stop adding fruits.")
+        break
+    
+    # Step 4: Add the fruit to the basket
+    fruit_basket.append(fruit)
+    print(f"{fruit} added to the basket.")
+    
+    # Display the current basket contents
+    print(f"Current basket: {fruit_basket}")
+    
+    # Optional: Check if the basket is full
+    if len(fruit_basket) == max_capacity:
+        print("The basket is full!")
+        break
+
+# Step 5: Display all fruits in the basket
+print("\nFinal fruit basket contents:")
+for fruit in fruit_basket:
+    print(f"- {fruit}")
+
+# Step 6: Find a specific fruit in the basket
+search_fruit = input("\nEnter a fruit to search for in the basket: ")
+if search_fruit in fruit_basket:
+    print(f"{search_fruit} is in the basket!")
+else:
+    print(f"{search_fruit} is not in the basket.")

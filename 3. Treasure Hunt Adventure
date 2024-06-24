@@ -1,5 +1,7 @@
+# Treasure Hunt Adventure!
+# Meng Yang
+
 import random
-# 
 
 # Step 1: Welcome the Player
 print("Welcome to the Treasure Hunt Adventure!")
@@ -31,44 +33,47 @@ def calculate_distance(x1, y1, x2, y2):
 # Function to display the grid
 def display_grid(grid):
     for row in grid:
-        print(" ".join(row))
-    print()  # Blank line for spacing
+        for col in row:
+            print(col, end=" ")
+        print()  # Blank line for spacing
+    print()
 
 # Step 3: Player Movement
-while (player_x, player_y) != (treasure_x, treasure_y):
+while player_x != treasure_x or player_y != treasure_y:
     # Show current distance to the treasure
     distance = calculate_distance(player_x, player_y, treasure_x, treasure_y)
     print(f"You are {distance} steps away from the treasure.")
-    
+
     # Display the grid
     display_grid(grid)
-    
+
     # Get the player's move
     move = input("Enter your move (up, down, left, right): ").lower()
-    
+
     # Clear previous player position
     grid[player_x][player_y] = "-"
-    
+
     # Update player's position based on the move
-    if move == "up" and player_y > 0:
-        player_y -= 1
-    elif move == "down" and player_y < grid_size - 1:
-        player_y += 1
-    elif move == "left" and player_x > 0:
+    if move == "up" and player_x > 0:
         player_x -= 1
-    elif move == "right" and player_x < grid_size - 1:
+    elif move == "down" and player_x < grid_size - 1:
         player_x += 1
+    elif move == "left" and player_y > 0:
+        player_y -= 1
+    elif move == "right" and player_y < grid_size - 1:
+        player_y += 1
     else:
         print("Invalid move. Try again.")
-    
+
     # Update grid with new player position
     grid[player_x][player_y] = "P"
-    
+
     print(f"You moved {move}.\n")
 
 # Step 4: Win Condition
 print("Congratulations! You found the treasure!")
 grid[treasure_x][treasure_y] = "T"
 display_grid(grid)
+
 
 

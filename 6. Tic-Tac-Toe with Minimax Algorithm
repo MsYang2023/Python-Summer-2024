@@ -1,91 +1,121 @@
-import math
+import random
 
-# Board initialization
-board = [[" " for _ in range(3)] for _ in range(3)]
-
+# Step 2: Print the Board (print_board)
+# Function to print the Tic-Tac-Toe board
 def print_board(board):
     for row in board:
         print(" | ".join(row))
-        print("-" * 5)
+        print("--" * 5)
 
-def is_winner(board, player):
-    # Check rows, columns and diagonals
+# Step 3: Check for Winner (check_winner)
+# Function to check for a winner
+def check_winner(board, player):
+    # Check rows, columns, and diagonals
     for row in board:
-        if all([cell == player for cell in row]):
+        if all(s == player for s in row):
             return True
     for col in range(3):
-        if all([board[row][col] == player for row in range(3)]):
+        if all(row[col] == player for row in board):
             return True
-    if all([board[i][i] == player for i in range(3)]) or all([board[i][2 - i] == player for i in range(3)]):
+    if all(board[i][i] == player for i in range(3)) or all(board[i][2-i] == player for i in range(3)):
         return True
     return False
 
-def is_draw(board):
-    return all([cell != " " for row in board for cell in row])
+# Step 4: Check if Board is Full (is_full)
+# Function to check if the board is full
+def is_full(board):
+    for row in board:
+        for cell in row:
+            if cell == " ":
+                return False
+    return True
 
-def minimax(board, depth, is_maximizing):
-    if is_winner(board, "O"):
-        return 1
-    if is_winner(board, "X"):
-        return -1
-    if is_draw(board):
-        return 0
-
-    if is_maximizing:
-        best_score = -math.inf
-        for i in range(3):
-            for j in range(3):
-                if board[i][j] == " ":
-                    board[i][j] = "O"
-                    score = minimax(board, depth + 1, False)
-                    board[i][j] = " "
-                    best_score = max(score, best_score)
-        return best_score
-    else:
-        best_score = math.inf
-        for i in range(3):
-            for j in range(3):
-                if board[i][j] == " ":
-                    board[i][j] = "X"
-                    score = minimax(board, depth + 1, True)
-                    board[i][j] = " "
-                    best_score = min(score, best_score)
-        return best_score
-
-def best_move(board):
-    best_score = -math.inf
-    move = None
+# Step 5: Get Available Moves (available_moves)
+# Function to get available moves
+def available_moves(board):
+    moves = []
     for i in range(3):
         for j in range(3):
             if board[i][j] == " ":
-                board[i][j] = "O"
-                score = minimax(board, 0, False)
-                board[i][j] = " "
-                if score > best_score:
-                    best_score = score
-                    move = (i, j)
-    return move
+                moves.append((i, j))
+    return moves
 
-# Game loop
-player = "X"
-while True:
-    print_board(board)
-    if player == "X":
-        row, col = map(int, input("Enter row and column (0-2): ").split())
+# Step 6: Implement Minimax Algorithm (minimax)
+# Minimax algorithm
+def minimax(board, depth, is_maximizing):
+    if check_winner(board, "O"):
+        return -1
+    if check_winner(board, "X"):
+        return 1
+    if is_full(board):
+        return 0
+
+    if is_maximizing:
+        best_score = -float("inf")
+        for move in available_moves(board):
+            board[move[0]][move[1]] = "X"
+            score = minimax(board, depth + 1, False)
+            board[move[0]][move[1]] = " "
+            best_score = max(score, best_score)
+        return best_score
     else:
-        move = best_move(board)
-        row, col = move if move else (0, 0)
+        best_score = float("inf")
+        for move in available_moves(board):
+            board[move[0]][move[1]] = "O"
+            score = minimax(board, depth + 1, True)
+            board[move[0]][move[1]] = " "
+            best_score = min(score, best_score)
+        return best_score
 
-    if board[row][col] == " ":
-        board[row][col] = player
-        if is_winner(board, player):
-            print_board(board)
-            print(f"Player {player} wins!")
-            break
-        if is_draw(board):
+# Step 7: Find Best Move (find_best_move)
+# Function to find the best move
+def find_best_move(board):
+    best_score = -float("inf")
+    best_move = None
+    for move in available_moves(board):
+        board[move[0]][move[1]] = "X"
+        score = minimax(board, 0, False)
+        board[move[0]][move[1]] = " "
+        if score > best_score:
+            best_score = score
+            best_move = move
+    return best_move
+
+# Step 1 & 8: Setup and Play the Game (play_game)
+# Main function to play the game
+def play_game():
+    board = [[" " for _ in range(3)] for _ in range(3)]
+    current_player = "O"
+
+    while True:
+        print_board(board)
+
+        if current_player == "O":
+            row = int(input("Enter the row (0-2): "))
+            col = int(input("Enter the column (0-2): "))
+            if board[row][col] == " ":
+                board[row][col] = "O"
+                if check_winner(board, "O"):
+                    print_board(board)
+                    print("O wins!")
+                    break
+                current_player = "X"
+            else:
+                print("Invalid move. Try again.")
+        else:
+            move = find_best_move(board)
+            if move:
+                board[move[0]][move[1]] = "X"
+                if check_winner(board, "X"):
+                    print_board(board)
+                    print("X wins!")
+                    break
+                current_player = "O"
+
+        if is_full(board):
             print_board(board)
             print("It's a draw!")
             break
-        player = "O" if player == "X" else "X"
-    else:
-        print("Invalid move, try again.")
+
+if __name__ == "__main__":
+    play_game()

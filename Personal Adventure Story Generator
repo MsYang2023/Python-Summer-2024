@@ -1,0 +1,54 @@
+# Welcome the User
+print("Welcome to the Personal Adventure Story Generator!")
+
+# Ask for the User's Name
+name = input("What is your name? ")
+
+# Ask for the User's Age
+age = input("How old are you? ")
+
+# Ask for the User's Favorite Color
+favorite_color = input("What is your favorite color? ")
+
+# Ask the User to Choose an Animal
+animal = input("Choose an animal (dog, cat, dragon): ")
+
+# Ask the User for a Preferred Setting
+setting = input("Do you prefer the forest or the sea? ")
+
+# Construct the Story Using String Concatenation and Conditional Statements
+story = "Once upon a time, there was a brave " + age + "-year-old named " + name + ". "
+story += name + " loved the color " + favorite_color + " and had a loyal " + animal + " as a pet. "
+
+if setting == "forest":
+    story += "One day, " + name + " and the " + animal + " decided to explore the forest. "
+    story += "They discovered a hidden treasure and lived happily ever after. The end."
+elif setting == "sea":
+    story += "One day, " + name + " and the " + animal + " decided to explore the sea. "
+    story += "They discovered a magical underwater kingdom and lived happily ever after. The end."
+else:
+    story += "One day, " + name + " and the " + animal + " decided to explore the world. "
+    story += "They had many adventures and lived happily ever after. The end."
+
+# Print the Story
+print(story)
+
+# Bonus Challenge: Use f-strings
+# Reconstruct the story using f-strings for a cleaner approach
+
+story_fstring = f"Once upon a time, there was a brave {age}-year-old named {name}. "
+story_fstring += f"{name} loved the color {favorite_color} and had a loyal {animal} as a pet. "
+
+if setting == "forest":
+    story_fstring += f"One day, {name} and the {animal} decided to explore the forest. "
+    story_fstring += "They discovered a hidden treasure and lived happily ever after. The end."
+elif setting == "sea":
+    story_fstring += f"One day, {name} and the {animal} decided to explore the sea. "
+    story_fstring += "They discovered a magical underwater kingdom and lived happily ever after. The end."
+else:
+    story_fstring += f"One day, {name} and the {animal} decided to explore the world. "
+    story_fstring += "They had many adventures and lived happily ever after. The end."
+
+# Print the f-string Story
+print("\n--- Using f-strings ---")
+print(story_fstring)

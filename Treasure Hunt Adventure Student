@@ -1,0 +1,42 @@
+# Treasure Hunt Adventure!
+# Meng Yang
+
+import random
+
+# Step 1: Welcome the Player
+
+
+# Step 2: Create a Grid
+
+# Hide the treasure at a random location
+
+
+# Initialize player's starting position
+
+# Function to calculate distance to the treasure
+
+# Function to display the grid
+
+# Step 3: Player Movement
+
+    # Show current distance to the treasure
+    
+
+    # Display the grid
+   
+    # Get the player's move
+    
+
+    # Clear previous player position
+    
+
+    # Update player's position based on the move
+   
+
+    # Update grid with new player position
+    
+
+# Step 4: Win Condition
+
+
+
